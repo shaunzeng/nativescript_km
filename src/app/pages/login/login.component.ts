@@ -16,7 +16,7 @@ class User {
     styleUrls: ['./login-common.css']
 })
 export class LoginComponent {
-    isLoggingIn = true;
+    isLoggingIn = false;
     processing = false;
     user: User;
     @ViewChild("password") password: ElementRef;
@@ -25,14 +25,8 @@ export class LoginComponent {
     constructor(private page: Page, private router: Router) {
         this.page.actionBarHidden = true;
         this.user = new User();
-        // this.user.email = "foo2@foo.com";
-        // this.user.password = "foo";
-        // this.processing = true;
     }
 
-    toggleForm() {
-        this.isLoggingIn = !this.isLoggingIn;
-    }
 
     submit() {
         if (!this.user.username || !this.user.password) {
@@ -53,24 +47,7 @@ export class LoginComponent {
     }
 
     register() {
-        if (this.user.password != this.user.confirmPassword) {
-            this.alert("Your passwords do not match.");
-            return;
-        }
-        this.alert('under construction');
-    }
-
-    forgotPassword() {
-        
-    }
-
-    focusPassword() {
-        this.password.nativeElement.focus();
-    }
-    focusConfirmPassword() {
-        if (!this.isLoggingIn) {
-            this.confirmPassword.nativeElement.focus();
-        }
+        this.router.navigateByUrl('./signup');
     }
 
     alert(message: string) {
